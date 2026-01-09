@@ -19,11 +19,11 @@ const products = [
   },
   {
     id: 2,
-    title: 'Буст до 30к трофеев',
-    price: '999 ₽',
-    oldPrice: '1 499 ₽',
+    title: 'Буст до 15к трофеев',
+    price: '499 ₽',
+    oldPrice: '699 ₽',
     type: 'Буст',
-    trophies: '30 000',
+    trophies: '15 000',
     image: '⚡',
   },
   {
@@ -37,11 +37,11 @@ const products = [
   },
   {
     id: 4,
-    title: 'Буст до 20к трофеев',
-    price: '599 ₽',
-    oldPrice: '899 ₽',
+    title: 'Буст до 10к трофеев',
+    price: '299 ₽',
+    oldPrice: '499 ₽',
     type: 'Буст',
-    trophies: '20 000',
+    trophies: '10 000',
     image: '🚀',
   },
   {
@@ -55,20 +55,16 @@ const products = [
   },
   {
     id: 6,
-    title: 'Буст до 40к трофеев',
-    price: '1 499 ₽',
-    oldPrice: '1 999 ₽',
+    title: 'Буст до 20к трофеев',
+    price: '799 ₽',
+    oldPrice: '999 ₽',
     type: 'Буст',
-    trophies: '40 000',
+    trophies: '20 000',
     image: '💎',
   },
 ];
 
-const reviews = [
-  { name: 'Алексей', rating: 5, text: 'Купил аккаунт, всё пришло моментально! Качество супер, цены приятные.' },
-  { name: 'Мария', rating: 5, text: 'Заказывала буст, сделали быстро и качественно. Рекомендую!' },
-  { name: 'Дмитрий', rating: 5, text: 'Лучший магазин! Поддержка отвечает быстро, всё честно.' },
-];
+
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState('Все');
@@ -103,20 +99,27 @@ export default function Index() {
               Flomix Shop
             </h1>
           </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <a href="#catalog" className="text-foreground/80 hover:text-primary transition-colors">Каталог</a>
-            <a href="#about" className="text-foreground/80 hover:text-primary transition-colors">О нас</a>
-            <a href="#reviews" className="text-foreground/80 hover:text-primary transition-colors">Отзывы</a>
-            <a href="#guide" className="text-foreground/80 hover:text-primary transition-colors">Как купить</a>
-          </nav>
-          <Sheet open={chatOpen} onOpenChange={setChatOpen}>
-            <SheetTrigger asChild>
-              <Button className="gap-2">
-                <Icon name="MessageCircle" size={20} />
-                Чат
-              </Button>
-            </SheetTrigger>
-            <SheetContent className="w-full sm:max-w-md animate-slide-in-right">
+          <div className="flex items-center gap-3">
+            <nav className="hidden md:flex items-center gap-6">
+              <a href="#catalog" className="text-foreground/80 hover:text-primary transition-colors">Каталог</a>
+              <a href="#about" className="text-foreground/80 hover:text-primary transition-colors">О нас</a>
+              <a href="#guide" className="text-foreground/80 hover:text-primary transition-colors">Как купить</a>
+            </nav>
+            <Button asChild variant="outline" className="gap-2">
+              <a href="https://t.me/Flomix_56" target="_blank" rel="noopener noreferrer">
+                <Icon name="Send" size={18} />
+                <span className="hidden sm:inline">Связаться в Telegram</span>
+                <span className="sm:hidden">Telegram</span>
+              </a>
+            </Button>
+            <Sheet open={chatOpen} onOpenChange={setChatOpen}>
+              <SheetTrigger asChild>
+                <Button className="gap-2">
+                  <Icon name="MessageCircle" size={20} />
+                  <span className="hidden sm:inline">Чат</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent className="w-full sm:max-w-md animate-slide-in-right">
               <SheetHeader>
                 <SheetTitle className="flex items-center gap-2">
                   <Icon name="MessageCircle" size={24} />
@@ -156,7 +159,8 @@ export default function Index() {
                 </div>
               </div>
             </SheetContent>
-          </Sheet>
+            </Sheet>
+          </div>
         </div>
       </header>
 
@@ -237,35 +241,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section id="reviews" className="py-16 px-4">
-        <div className="container mx-auto">
-          <h3 className="text-4xl font-bold mb-8 text-center">Отзывы клиентов</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {reviews.map((review, idx) => (
-              <Card key={idx} className="animate-fade-in">
-                <CardHeader>
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                      <Icon name="User" size={20} className="text-primary" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-base">{review.name}</CardTitle>
-                      <div className="flex gap-1">
-                        {[...Array(review.rating)].map((_, i) => (
-                          <Icon key={i} name="Star" size={14} className="text-secondary fill-secondary" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground/80">{review.text}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       <section id="guide" className="py-16 px-4 bg-card/30">
         <div className="container mx-auto max-w-3xl">
@@ -286,7 +262,7 @@ export default function Index() {
             <AccordionItem value="item-3">
               <AccordionTrigger className="text-lg">3. Оплатите покупку</AccordionTrigger>
               <AccordionContent className="text-foreground/80">
-                После оформления заказа вы получите ссылку на оплату. Мы принимаем карты, электронные кошельки и СБП.
+                После оформления заказа вы получите ссылку на оплату. Мы принимаем оплату через СБП (Систему Быстрых Платежей).
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-4">
